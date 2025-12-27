@@ -1,51 +1,51 @@
 # Tarkan
 
-Projet versionné avec Git et synchronisé avec GitHub via SSH.
-Ce dépôt sert de base propre pour le développement, le versionnement et le travail reproductible.
+Version-controlled project using Git and synchronized with GitHub via SSH.
+This repository serves as a clean base for development, versioning, and reproducible work.
 
 ---
 
-## Prérequis
+## Prerequisites
 
 - macOS / Linux
-- Git (version récente)
-- Compte GitHub
-- Clé SSH configurée et ajoutée à GitHub
+- Git (recent version)
+- GitHub account
+- SSH key configured and added to GitHub
 
 ---
 
-## Vérification SSH
+## SSH Verification
 
-Vérifier la présence d’une clé SSH :
+Check for an existing SSH key:
 
 ls ~/.ssh
 
-Les fichiers attendus :
+Expected files:
 
 - id_ed25519
 - id_ed25519.pub
 
-Tester la connexion GitHub :
+Test the GitHub connection:
 
 ssh -T git@github.com
 
-Réponse attendue :
+Expected response:
 
 You've successfully authenticated, but GitHub does not provide shell access.
 
 ---
 
-## Cloner le dépôt
+## Clone the Repository
 
 git clone git@github.com:phdmustafayucel/tarkan.git
 cd tarkan
 
-IMPORTANT
-Après un git clone, il faut toujours entrer dans le dossier cloné avant d’utiliser Git.
+IMPORTANT  
+After a git clone, you must always enter the cloned directory before using Git.
 
 ---
 
-## Structure du dépôt
+## Repository Structure
 
 tarkan/
 ├── .git/
@@ -54,59 +54,56 @@ tarkan/
 
 ---
 
-## Commandes Git essentielles
+## Essential Git Commands
 
-git status
-
-git add .
-
-git commit -m "Message de commit clair"
-
-git push
+git status  
+git add .  
+git commit -m "Clear commit message"  
+git push  
 
 ---
 
-## Erreurs courantes
+## Common Errors
 
 not a git repository
 
-Cause :
-Commande exécutée hors du dossier contenant .git
+Cause:  
+Command executed outside the directory containing .git
 
-Solution :
+Solution:
 
 cd tarkan
 
 ---
 
-Commandes invalides :
+## Invalid Commands
 
-git add*
+git add*  
 git add.
 
-Commande correcte :
+Correct command:
 
 git add .
 
 ---
 
-## Bonnes pratiques
+## Best Practices
 
-pwd
-ls -a
+pwd  
+ls -a  
 
-Un commit = une modification logique
-Messages de commit courts et explicites
-
----
-
-## Auteur
-
-PhD Student, Mustafa Yücel
-MSc, Berkin Binbas
+- One commit = one logical change
+- Commit messages should be short and explicit
 
 ---
 
-## Licence
+## Authors
 
-À définir.
+PhD Student, Mustafa Yücel  
+MSc, Berkin Binbas  
+
+---
+
+## License
+
+To be defined.
