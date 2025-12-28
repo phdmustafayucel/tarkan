@@ -1,143 +1,158 @@
-# Tarkan
+# TARKAN
 
-Version-controlled project using Git and synchronized with GitHub via SSH.  
-This repository provides a clean and reproducible base for development and research-oriented workflows.
+TARKAN is a Python-based client–server control framework for laboratory instrumentation.
+It provides a modular architecture to remotely control, synchronize, and automate
+multiple hardware devices through a unified interface and graphical user interface (GUI).
+
+The project was originally developed in a research context and is structured to support
+reproducible experiments, device abstraction, and scalable instrument control.
 
 ---
 
 ## Overview
 
-Tarkan is a lightweight Git-based project template designed to enforce good
-version control practices and reproducible development.
-It is intended as a solid starting point for technical or academic projects.
+TARKAN implements a distributed control system where:
+- A central server manages hardware resources
+- Clients send commands and receive data
+- A GUI layer allows interactive experiment control
+- Each instrument is encapsulated in its own Python module
+
+Supported devices include:
+- SuperK laser systems
+- WinSpec spectrometers
+- Thorlabs motorized stages
+- HMP4040 power supplies
 
 ---
 
-## Purpose
+## Architecture
 
-- Provide a clean Git/GitHub workflow
-- Enforce good versioning habits
-- Serve as a reproducible development base
-- Prevent common Git mistakes
+The project follows a layered design:
 
----
+- Server layer: device management and command execution
+- Client layer: communication with the server
+- GUI layer: experiment control and visualization
+- Device modules: hardware-specific logic
 
-## Prerequisites
-
-- macOS / Linux
-- Git (recent version)
-- GitHub account
-- SSH key configured and added to GitHub
-
----
-
-## SSH Verification
-
-Check for an existing SSH key:
-
-ls ~/.ssh
-
-Expected files:
-
-- id_ed25519
-- id_ed25519.pub
-
-Test the GitHub connection:
-
-ssh -T git@github.com
-
-Expected response:
-
-You've successfully authenticated, but GitHub does not provide shell access.
-
----
-
-## Getting Started
-
-1. Ensure SSH is properly configured
-2. Clone the repository
-3. Enter the project directory
-4. Start working
-
----
-
-## Clone the Repository
-
-git clone git@github.com:phdmustafayucel/tarkan.git
-cd tarkan
-
-IMPORTANT  
-After a git clone, you must always enter the cloned directory before using Git.
+Communication is handled via Python sockets and multiprocessing.
 
 ---
 
 ## Repository Structure
 
-tarkan/
-├── .git/
-├── README.md
-└── ...
+urop23_server_client-main/
+
+├── server/
+│   ├── server.py              # Main server entry point
+│   ├── worker.py              # Worker processes for command handling
+│   ├── loggingProc.py         # Centralized logging
+│   ├── utils.py               # Server utilities
+│   └── server.config          # Server configuration file
+│
+├── client/
+│   ├── client.py              # Client entry point
+│   └── clientClass.py         # Client communication logic
+│
+├── gui/
+│   ├── gui_run.py              # GUI launcher
+│   ├── measurement.py         # Measurement logic
+│   ├── optimization.py        # Optimization routines
+│   └── test_folder/            # Stored experimental data and plots
+│
+├── SuperK/
+│   ├── superkClass.py          # SuperK laser control
+│   ├── SuperKControlFrame.py  # GUI frame for SuperK
+│   ├── comClass.py             # Communication helpers
+│   └── utility.py              # Utility functions
+│
+├── WinSpec/
+│   ├── WinSpecClass.py         # Spectrometer control
+│   ├── WinSpecControlFrame.py # GUI frame for WinSpec
+│   └── deprecated/            # Deprecated implementations
+│
+├── HMP4040/
+│   ├── hmp4040Class.py         # Power supply control
+│   ├── hmp4040ControlFrame.py # GUI frame
+│
+├── m30xy/
+│   ├── m30xyClass.py           # Thorlabs stage control
+│   ├── m30xyControlFrame.py   # GUI frame
+│
+└── __init__.py
 
 ---
 
-## Essential Git Commands
+## Server–Client Model
 
-git status  
-git add .  
-git commit -m "Clear and descriptive commit message"  
-git push  
+- The server maintains exclusive access to hardware devices
+- Clients send structured commands to the server
+- Workers process commands asynchronously
+- Results and data are returned to the client or GUI
 
----
-
-## Recommended Workflow
-
-1. Make a single logical change
-2. Check repository status
-3. Stage changes
-4. Commit with a clear message
-5. Push to GitHub
+This design prevents device conflicts and allows multiple clients.
 
 ---
 
-## Common Errors
+## Running the Server
 
-not a git repository
+From the project root:
 
-Cause:  
-Command executed outside the directory containing .git
+python server/server.py
 
-Solution:
-
-cd tarkan
+Ensure all required hardware drivers and libraries are installed
+before starting the server.
 
 ---
 
-## Invalid Commands
+## Running the Client
 
-git add*  
-git add.
+python client/client.py
 
-Correct command:
-
-git add .
+The client connects to the server using the configuration
+defined in server.config.
 
 ---
 
-## Best Practices
+## Running the GUI
 
-pwd  
-ls -a  
+python gui/gui_run.py
 
-- One commit equals one logical change
-- Commit messages should be short, explicit, and meaningful
+The GUI provides:
+- Device control panels
+- Measurement execution
+- Data acquisition
+- Real-time plotting and saved results
 
 ---
 
-## Contributing
+## Data Handling
 
-- Keep commits atomic
-- Do not commit generated or temporary files
-- Follow the recommended workflow
+Experimental results are stored as:
+- Pickle (.pkl) files for raw data
+- PNG files for plotted spectra
+
+Data is organized by timestamp and experiment type.
+
+---
+
+## Development Notes
+
+- Each device is encapsulated in its own class
+- GUI control frames mirror device classes
+- Deprecated code is kept for reference only
+- Multiprocessing is used to isolate hardware access
+
+---
+
+## Intended Use
+
+This project is intended for:
+- Research laboratories
+- Experimental automation
+- Multi-device synchronization
+- Rapid prototyping of control software
+
+It is not a plug-and-play consumer application.
 
 ---
 
@@ -150,5 +165,5 @@ MSc, Berkin Binbas
 
 ## License
 
-This project is currently unlicensed.  
+This project is currently unlicensed.
 All rights reserved.
