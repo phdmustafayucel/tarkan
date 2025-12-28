@@ -39,7 +39,7 @@ Communication is handled via Python sockets and multiprocessing.
 ---
 
 ## Repository Structure
-
+```bash
 tarkan/
 ├── server/
 │   ├── server.py            # Main server entry point
@@ -77,7 +77,7 @@ tarkan/
 │   └── m30xyControlFrame.py # GUI frame
 │
 └── __init__.py
-
+```
 ---
 
 ## Server–Client Model
