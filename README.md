@@ -4,7 +4,7 @@ TARKAN is a Python-based client–server control framework for laboratory instru
 It provides a modular architecture to remotely control, synchronize, and automate
 multiple hardware devices through a unified interface and graphical user interface (GUI).
 
-The project was originally developed in a research context and is structured to support
+The project was developed in a research context and is structured to support
 reproducible experiments, device abstraction, and scalable instrument control.
 
 ---
@@ -40,7 +40,7 @@ Communication is handled via Python sockets and multiprocessing.
 
 ## Repository Structure
 
-urop23_server_client-main/
+tarkan/
 
 ├── server/
 │   ├── server.py              # Main server entry point
@@ -54,29 +54,28 @@ urop23_server_client-main/
 │   └── clientClass.py         # Client communication logic
 │
 ├── gui/
-│   ├── gui_run.py              # GUI launcher
+│   ├── gui_run.py             # GUI launcher
 │   ├── measurement.py         # Measurement logic
 │   ├── optimization.py        # Optimization routines
-│   └── test_folder/            # Stored experimental data and plots
+│   └── test_folder/           # Stored experimental data and plots
 │
 ├── SuperK/
-│   ├── superkClass.py          # SuperK laser control
-│   ├── SuperKControlFrame.py  # GUI frame for SuperK
-│   ├── comClass.py             # Communication helpers
-│   └── utility.py              # Utility functions
+│   ├── superkClass.py         # SuperK laser control
+│   ├── SuperKControlFrame.py # GUI frame for SuperK
+│   ├── comClass.py            # Communication helpers
+│   └── utility.py             # Utility functions
 │
 ├── WinSpec/
-│   ├── WinSpecClass.py         # Spectrometer control
-│   ├── WinSpecControlFrame.py # GUI frame for WinSpec
-│   └── deprecated/            # Deprecated implementations
+│   ├── WinSpecClass.py        # Spectrometer control
+│   └── WinSpecControlFrame.py # GUI frame for WinSpec
 │
 ├── HMP4040/
-│   ├── hmp4040Class.py         # Power supply control
-│   ├── hmp4040ControlFrame.py # GUI frame
+│   ├── hmp4040Class.py        # Power supply control
+│   └── hmp4040ControlFrame.py # GUI frame
 │
 ├── m30xy/
-│   ├── m30xyClass.py           # Thorlabs stage control
-│   ├── m30xyControlFrame.py   # GUI frame
+│   ├── m30xyClass.py          # Thorlabs stage control
+│   └── m30xyControlFrame.py   # GUI frame
 │
 └── __init__.py
 
@@ -86,7 +85,7 @@ urop23_server_client-main/
 
 - The server maintains exclusive access to hardware devices
 - Clients send structured commands to the server
-- Workers process commands asynchronously
+- Worker processes handle commands asynchronously
 - Results and data are returned to the client or GUI
 
 This design prevents device conflicts and allows multiple clients.
@@ -99,8 +98,8 @@ From the project root:
 
 python server/server.py
 
-Ensure all required hardware drivers and libraries are installed
-before starting the server.
+Ensure all required hardware drivers and Python dependencies
+are installed before starting the server.
 
 ---
 
@@ -129,7 +128,7 @@ The GUI provides:
 
 Experimental results are stored as:
 - Pickle (.pkl) files for raw data
-- PNG files for plotted spectra
+- PNG files for plotted outputs
 
 Data is organized by timestamp and experiment type.
 
@@ -137,10 +136,10 @@ Data is organized by timestamp and experiment type.
 
 ## Development Notes
 
-- Each device is encapsulated in its own class
+- Each device is encapsulated in its own Python class
 - GUI control frames mirror device classes
-- Deprecated code is kept for reference only
 - Multiprocessing is used to isolate hardware access
+- The server is the single point of truth for device state
 
 ---
 
