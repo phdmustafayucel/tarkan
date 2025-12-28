@@ -1,7 +1,24 @@
 # Tarkan
 
-Version-controlled project using Git and synchronized with GitHub via SSH.
-This repository serves as a clean base for development, versioning, and reproducible work.
+Version-controlled project using Git and synchronized with GitHub via SSH.  
+This repository provides a clean and reproducible base for development and research-oriented workflows.
+
+---
+
+## Overview
+
+Tarkan is a lightweight Git-based project template designed to enforce good
+version control practices and reproducible development.
+It is intended as a solid starting point for technical or academic projects.
+
+---
+
+## Purpose
+
+- Provide a clean Git/GitHub workflow
+- Enforce good versioning habits
+- Serve as a reproducible development base
+- Prevent common Git mistakes
 
 ---
 
@@ -35,6 +52,15 @@ You've successfully authenticated, but GitHub does not provide shell access.
 
 ---
 
+## Getting Started
+
+1. Ensure SSH is properly configured
+2. Clone the repository
+3. Enter the project directory
+4. Start working
+
+---
+
 ## Clone the Repository
 
 git clone git@github.com:phdmustafayucel/tarkan.git
@@ -58,8 +84,18 @@ tarkan/
 
 git status  
 git add .  
-git commit -m "Clear commit message"  
+git commit -m "Clear and descriptive commit message"  
 git push  
+
+---
+
+## Recommended Workflow
+
+1. Make a single logical change
+2. Check repository status
+3. Stage changes
+4. Commit with a clear message
+5. Push to GitHub
 
 ---
 
@@ -92,8 +128,16 @@ git add .
 pwd  
 ls -a  
 
-- One commit = one logical change
-- Commit messages should be short and explicit
+- One commit equals one logical change
+- Commit messages should be short, explicit, and meaningful
+
+---
+
+## Contributing
+
+- Keep commits atomic
+- Do not commit generated or temporary files
+- Follow the recommended workflow
 
 ---
 
@@ -106,4 +150,5 @@ MSc, Berkin Binbas
 
 ## License
 
-To be defined.
+This project is currently unlicensed.  
+All rights reserved.
