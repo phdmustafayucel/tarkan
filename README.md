@@ -41,41 +41,40 @@ Communication is handled via Python sockets and multiprocessing.
 ## Repository Structure
 
 tarkan/
-
 ├── server/
-│   ├── server.py              # Main server entry point
-│   ├── worker.py              # Worker processes for command handling
-│   ├── loggingProc.py         # Centralized logging
-│   ├── utils.py               # Server utilities
-│   └── server.config          # Server configuration file
+│   ├── server.py            # Main server entry point
+│   ├── worker.py            # Worker processes for command handling
+│   ├── loggingProc.py       # Centralized logging
+│   ├── utils.py             # Server utilities
+│   └── server.config        # Server configuration file
 │
 ├── client/
-│   ├── client.py              # Client entry point
-│   └── clientClass.py         # Client communication logic
+│   ├── client.py            # Client entry point
+│   └── clientClass.py       # Client communication logic
 │
 ├── gui/
-│   ├── gui_run.py             # GUI launcher
-│   ├── measurement.py         # Measurement logic
-│   ├── optimization.py        # Optimization routines
-│   └── test_folder/           # Stored experimental data and plots
+│   ├── gui_run.py           # GUI launcher
+│   ├── measurement.py      # Measurement logic
+│   ├── optimization.py     # Optimization routines
+│   └── test_folder/        # Stored experimental data and plots
 │
 ├── SuperK/
-│   ├── superkClass.py         # SuperK laser control
-│   ├── SuperKControlFrame.py # GUI frame for SuperK
-│   ├── comClass.py            # Communication helpers
-│   └── utility.py             # Utility functions
+│   ├── superkClass.py       # SuperK laser control
+│   ├── SuperKControlFrame.py# GUI frame for SuperK
+│   ├── comClass.py          # Communication helpers
+│   └── utility.py           # Utility functions
 │
 ├── WinSpec/
-│   ├── WinSpecClass.py        # Spectrometer control
-│   └── WinSpecControlFrame.py # GUI frame for WinSpec
+│   ├── WinSpecClass.py      # Spectrometer control
+│   └── WinSpecControlFrame.py# GUI frame for WinSpec
 │
 ├── HMP4040/
-│   ├── hmp4040Class.py        # Power supply control
-│   └── hmp4040ControlFrame.py # GUI frame
+│   ├── hmp4040Class.py      # Power supply control
+│   └── hmp4040ControlFrame.py# GUI frame
 │
 ├── m30xy/
-│   ├── m30xyClass.py          # Thorlabs stage control
-│   └── m30xyControlFrame.py   # GUI frame
+│   ├── m30xyClass.py        # Thorlabs stage control
+│   └── m30xyControlFrame.py # GUI frame
 │
 └── __init__.py
 
