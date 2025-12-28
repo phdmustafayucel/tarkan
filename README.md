@@ -39,45 +39,71 @@ Communication is handled via Python sockets and multiprocessing.
 ---
 
 ## Repository Structure
-```bash
+
 tarkan/
 ├── server/
-│   ├── server.py            # Main server entry point
-│   ├── worker.py            # Worker processes for command handling
-│   ├── loggingProc.py       # Centralized logging
-│   ├── utils.py             # Server utilities
-│   └── server.config        # Server configuration file
+│   ├── server.py             # Main server entry point
+│   ├── worker.py             # Worker processes for command handling
+│   ├── loggingProc.py        # Centralized logging
+│   ├── utils.py              # Server utilities
+│   └── server.config         # Server configuration file
 │
 ├── client/
-│   ├── client.py            # Client entry point
-│   └── clientClass.py       # Client communication logic
+│   ├── client.py             # Client entry point
+│   └── clientClass.py        # Client communication logic
 │
 ├── gui/
-│   ├── gui_run.py           # GUI launcher
-│   ├── measurement.py      # Measurement logic
-│   ├── optimization.py     # Optimization routines
-│   └── test_folder/        # Stored experimental data and plots
+│   ├── gui_run.py            # GUI launcher
+│   ├── measurement.py       # Measurement logic
+│   ├── optimization.py      # Optimization routines
+│   └── test_folder/         # Stored experimental data and plots
 │
 ├── SuperK/
-│   ├── superkClass.py       # SuperK laser control
-│   ├── SuperKControlFrame.py# GUI frame for SuperK
-│   ├── comClass.py          # Communication helpers
-│   └── utility.py           # Utility functions
+│   ├── superkClass.py        # SuperK laser control
+│   ├── SuperKControlFrame.py # GUI frame for SuperK
+│   ├── comClass.py           # Communication helpers
+│   └── utility.py            # Utility functions
 │
 ├── WinSpec/
-│   ├── WinSpecClass.py      # Spectrometer control
-│   └── WinSpecControlFrame.py# GUI frame for WinSpec
+│   ├── WinSpecClass.py       # Spectrometer control
+│   └── WinSpecControlFrame.py # GUI frame for WinSpec
 │
 ├── HMP4040/
-│   ├── hmp4040Class.py      # Power supply control
-│   └── hmp4040ControlFrame.py# GUI frame
+│   ├── hmp4040Class.py       # Power supply control
+│   └── hmp4040ControlFrame.py # GUI frame
 │
 ├── m30xy/
-│   ├── m30xyClass.py        # Thorlabs stage control
-│   └── m30xyControlFrame.py # GUI frame
+│   ├── m30xyClass.py         # Thorlabs stage control
+│   └── m30xyControlFrame.py  # GUI frame
 │
 └── __init__.py
-```
+
+---
+
+## Requirements
+
+- Python ≥ 3.9
+- NumPy
+- SciPy
+- Matplotlib
+- PyQt / PySide (for GUI)
+- Device-specific drivers and SDKs:
+  - SuperK
+  - WinSpec
+  - Thorlabs stages
+  - HMP4040 power supply
+
+---
+
+## Configuration
+
+The `server.config` file defines:
+- Server host and port
+- Enabled devices
+- Device-specific parameters
+
+This file must be configured correctly before starting the server.
+
 ---
 
 ## Server–Client Model
@@ -88,6 +114,16 @@ tarkan/
 - Results and data are returned to the client or GUI
 
 This design prevents device conflicts and allows multiple clients.
+
+---
+
+## Typical Workflow
+
+1. Configure devices in `server.config`
+2. Start the server
+3. Launch the client or GUI
+4. Run measurements or optimizations
+5. Store and analyze results
 
 ---
 
@@ -107,7 +143,7 @@ are installed before starting the server.
 python client/client.py
 
 The client connects to the server using the configuration
-defined in server.config.
+defined in `server.config`.
 
 ---
 
@@ -133,12 +169,29 @@ Data is organized by timestamp and experiment type.
 
 ---
 
+## Extending the Framework
+
+To add a new device:
+1. Implement a device class following existing patterns
+2. Create a corresponding GUI control frame
+3. Register the device in the server configuration
+
+---
+
 ## Development Notes
 
 - Each device is encapsulated in its own Python class
 - GUI control frames mirror device classes
-- Multiprocessing is used to isolate hardware access
+- Multiprocessing isolates hardware access
 - The server is the single point of truth for device state
+
+---
+
+## Limitations
+
+- Requires physical access to supported hardware
+- Not intended for hard real-time control
+- No built-in security beyond trusted local networks
 
 ---
 
